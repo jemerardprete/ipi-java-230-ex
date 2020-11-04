@@ -9,7 +9,8 @@ import java.util.Objects;
 // 1.1 : Annoter la classe Employe en tant qu'entité pour qu'elle puisse récupérer les données de la table Employe
 @Entity
 @Table(name = "employe")
-public /*abstract*/ class Employe {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Employe {
 
 	// 1.2 : Ajouter un champ id de type Long
 	// L'annoter de manière a ce qu'il puisse gérer les identifiants générés automatiquement par MySQL.
@@ -48,7 +49,7 @@ public /*abstract*/ class Employe {
 		return Entreprise.NB_CONGES_BASE;
 	}
 	
-	// public abstract Double getPrimeAnnuelle();
+	public abstract Double getPrimeAnnuelle();
 
 	public void augmenterSalaire(Double pourcentage) {
 		this.salaire = this.getSalaire() * (1 + pourcentage);
